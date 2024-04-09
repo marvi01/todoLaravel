@@ -11,6 +11,7 @@ class TasksController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * @return view
      */
     public function index()
     {
@@ -20,6 +21,11 @@ class TasksController extends Controller
         return view('tasks.list-tasks', compact('tasks'));
     }
 
+      /**
+     * Display a listing of the resource.
+     * @param Request $request
+     * @return view
+     */
     public function search(Request $request)
     {
         $params = $request->all();
@@ -31,6 +37,7 @@ class TasksController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @return view
      */
     public function create()
     {
@@ -42,6 +49,7 @@ class TasksController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @param Request $request
      */
     public function store(Request $request)
     {
@@ -73,6 +81,8 @@ class TasksController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * @param string $id
+     * @return view
      */
     public function edit(string $id)
     {
@@ -85,6 +95,8 @@ class TasksController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @params Request $request, string $id
+     * @return redirect('tasks')
      */
     public function update(Request $request, string $id)
     {
@@ -104,6 +116,8 @@ class TasksController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param string id
+     * @return string result
      */
     public function destroy(string $id)
     {
@@ -114,7 +128,9 @@ class TasksController extends Controller
             return 'erro ao deletar';
         }
     }
-
+    /**
+     * @return view
+     */
     public function reportView()
     {
 
@@ -122,6 +138,10 @@ class TasksController extends Controller
         //dd($tasks[111]->userTasks[0]->users->name);
         return view('reports.report-tasks', compact('tasks'));
     }
+    /**
+     * @param Request $request
+     * @return view
+     */
     public function reportValues(Request $request)
     {
         $params = $request->all();
@@ -146,10 +166,14 @@ class TasksController extends Controller
                 ->get();
             return view('reports.report-tasks', compact('tasks'));
         }catch (\Exception $exception){
-            dd($exception, $params);
+        
         }
 
     }
+
+     /**
+     * @return view
+     */
     public function dashboard()
     {
         $tasks =Tasks::all();

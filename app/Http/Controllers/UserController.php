@@ -28,6 +28,8 @@ class UserController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @param Request $request
+     * @return redirect('users')
      */
     public function store(Request $request)
     {
@@ -73,6 +75,8 @@ class UserController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param string id
+     * @return string result
      */
     public function destroy(string $id)
     {
